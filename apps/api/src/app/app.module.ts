@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CoreModule } from '@uptownhr/core';
 
 @Module({
-  imports: [CoreModule],
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })
