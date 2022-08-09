@@ -10,7 +10,8 @@
         "outputPath": "dist/apps/kube",
         "main": "apps/kube/src/main.ts",
         "tsConfig": "apps/kube/tsconfig.app.json",
-        "assets": ["apps/kube/src/assets"]
+        "assets": ["apps/kube/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
@@ -50,6 +51,16 @@
       "options": {
         "jestConfig": "apps/kube/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build api",
+          "docker build -f ./apps/kube/Dockerfile . -t kube"
+        ],
+        "parallel": false
       }
     }
   },
