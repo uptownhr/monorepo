@@ -16,7 +16,7 @@ describe('AppController', () => {
   describe('getData', () => {
     it('should return "Welcome to kube!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({ message: 'Welcome to kube!' });
+      expect(appController.getData()).toEqual({ message: 'Welcome to kube!!' });
     });
   });
 });
