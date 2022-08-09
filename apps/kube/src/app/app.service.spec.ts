@@ -15,7 +15,7 @@ describe('AppService', () => {
 
   describe('getData', () => {
     it('should return "Welcome to kube!"', () => {
-      expect(service.getData()).toEqual({ message: 'Welcome to kube!' });
+      expect(service.getData()).toEqual({ message: 'Welcome to kube!!' });
     });
   });
 });
