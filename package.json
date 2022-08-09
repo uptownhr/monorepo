@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +36,7 @@
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "jest": "27.5.1",
     "lint-staged": "^13.0.3",
     "nx": "14.5.4",
