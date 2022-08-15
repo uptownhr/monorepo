@@ -11,7 +11,8 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.6
     with:
       number-of-agents: 3
-      init-commands: |
+      install-commands: |
+        yarn yarn install --frozen-lockfile
         yarn prisma:generate
       parallel-commands: |
         npx nx-cloud record -- npx nx workspace-lint
