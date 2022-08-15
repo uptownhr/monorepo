@@ -26,4 +26,4 @@ jobs:
       number-of-agents: 3
       install-commands: |
         yarn install --frozen-lockfile
-        yarn prisma:generate
+        NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn prisma:generate
