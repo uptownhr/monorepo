@@ -12,7 +12,7 @@ jobs:
     with:
       number-of-agents: 3
       init-commands: |
-        npx nx affected --target=prisma:generate --parallel=3
+        npx nx prisma:generate api
       parallel-commands: |
         npx nx-cloud record -- npx nx workspace-lint
         npx nx-cloud record -- npx nx format:check
