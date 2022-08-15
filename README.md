@@ -4,7 +4,7 @@
 1. clone `git clone git@github.com:uptownhr/uptownhr`
 2. install depdendencies `yarn`
 3. migrate `npx nx prisma:migrate api`
-4. generate `yarn migrate`
+4. generate `yarn prisma:generate`
 5. start `yarn start`
 
 
