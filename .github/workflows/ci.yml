@@ -7,8 +7,6 @@ on:
 
 jobs:
   main:
-    steps:
-      - name:
     name: Nx Cloud - Main Job
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.6
     with:
