@@ -1,6 +1,8 @@
 FROM node:18-alpine
 WORKDIR /app
 
+ENV NX_CLOUD_DISTRIBUTED_EXECUTION=false
+
 COPY . .
 RUN yarn
 RUN yarn prisma:generate
