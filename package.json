@@ -40,6 +40,7 @@
     "@nrwl/node": "14.5.4",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/workspace": "14.5.4",
+    "@nx-tools/nx-prisma": "^3.0.1",
     "@types/jest": "27.4.1",
     "@types/newrelic": "^7.0.3",
     "@types/node": "16.11.7",

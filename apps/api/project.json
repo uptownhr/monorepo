@@ -64,12 +64,9 @@
       }
     },
     "prisma:generate": {
-      "builder": "@nrwl/workspace:run-commands",
+      "builder": "@nx-tools/nx-prisma:generate",
       "options": {
-        "commands": [
-          "prisma generate --schema=./apps/api/prisma/schema.prisma"
-        ],
-        "parallel": false
+        "schema": "apps/api/prisma/schema.prisma"
       }
     },
     "prisma:migrate": {
