@@ -17,7 +17,7 @@ function toEntity(one: DB.HackerNewsFirst): NumberOneEntity {
   };
 }
 
-interface save extends Omit<NumberOneEntity, 'id' | 'createdAt' | 'domain'> {}
+type Save = Omit<NumberOneEntity, 'id' | 'createdAt' | 'domain'>
 
 enum HackerNewsSelectedStatus {
   SKIPPED = 'SKIPPED',
@@ -28,7 +28,7 @@ enum HackerNewsSelectedStatus {
 export class HackerNewsFirstRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async save(data: save): Promise<NumberOneEntity> {
+  async save(data: Save): Promise<NumberOneEntity> {
     const one = await this.prisma.hackerNewsFirst.upsert({
       create: {
         hnId: data.hnId,
