@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "prisma:generate": "nx prisma:generate",
     "prepare": "husky install"
   },
   "private": true,

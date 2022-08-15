@@ -1,4 +1,4 @@
-import { Contact } from '@prisma/client';
+import {DB} from "../prisma.service";
 import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from '@nestjs/common';
 import { ContactRepository } from './contact.repository';
 
@@ -12,27 +12,27 @@ export class ContactController {
   constructor(private readonly contactRepository: ContactRepository) {}
 
   @Post()
-  async create(@Body() contact: CreateContactInput): Promise<Contact> {
+  async create(@Body() contact: CreateContactInput): Promise<DB.Contact> {
     return this.contactRepository.create(contact);
   }
 
   @Put()
-  async update(@Body() contact: Contact): Promise<Contact> {
+  async update(@Body() contact: DB.Contact): Promise<DB.Contact> {
     return this.contactRepository.update(contact);
   }
 
   @Delete('/:id')
-  async delete(@Param('id', ParseIntPipe) id: number): Promise<Contact> {
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<DB.Contact> {
     return this.contactRepository.delete(id);
   }
 
   @Get('/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Contact | null> {
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<DB.Contact | null> {
     return this.contactRepository.findOne(id);
   }
 
   @Get()
-  async findAll(): Promise<Contact[]> {
+  async findAll(): Promise<DB.Contact[]> {
     return this.contactRepository.findAll();
   }
 }

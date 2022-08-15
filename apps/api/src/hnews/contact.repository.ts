@@ -1,5 +1,4 @@
-import { Contact } from '@prisma/client';
-import { PrismaService } from '../prisma.service';
+import { PrismaService, DB } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
 
 export interface CreateContactInput {
@@ -11,7 +10,7 @@ export interface CreateContactInput {
 export class ContactRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(contact: CreateContactInput): Promise<Contact> {
+  async create(contact: CreateContactInput): Promise<DB.Contact> {
     return this.prisma.contact.create({
       data: {
         ...contact,
@@ -19,7 +18,7 @@ export class ContactRepository {
     });
   }
 
-  async update(contact: Contact): Promise<Contact> {
+  async update(contact: DB.Contact): Promise<DB.Contact> {
     return this.prisma.contact.update({
       where: {
         id: contact.id,
@@ -30,7 +29,7 @@ export class ContactRepository {
     });
   }
 
-  async delete(id: number): Promise<Contact> {
+  async delete(id: number): Promise<DB.Contact> {
     return this.prisma.contact.delete({
       where: {
         id,
@@ -38,7 +37,7 @@ export class ContactRepository {
     });
   }
 
-  async findOne(id: number): Promise<Contact | null> {
+  async findOne(id: number): Promise<DB.Contact | null> {
     return this.prisma.contact.findUnique({
       where: {
         id,
@@ -46,7 +45,7 @@ export class ContactRepository {
     });
   }
 
-  async findAll(): Promise<Contact[]> {
+  async findAll(): Promise<DB.Contact[]> {
     return this.prisma.contact.findMany();
   }
 }
