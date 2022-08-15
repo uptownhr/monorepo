@@ -1,0 +1,21 @@
+export const repos = [
+  ["get", "git@github.com:BambeeHR/get.git"],
+  ["honey", "git@github.com:BambeeHR/honey.git"],
+  ["app", "git@github.com:BambeeHR/app.git"],
+  ["api-v2", "git@github.com:BambeeHR/api-v2.git"],
+  ["API", "git@github.com:BambeeHR/API.git"],
+  ["apollo-gateway", "git@github.com:BambeeHR/apollo-gateway.git"],
+  [
+    "nestjs-service-template",
+    "git@github.com:BambeeHR/nestjs-service-template.git",
+  ],
+  ["club-app", "git@github.com:BambeeHR/club-app.git"],
+  ["employee-service", "git@github.com:BambeeHR/employee-service.git"],
+  ["company-service", "git@github.com:BambeeHR/company-service.git"],
+  ["core-v1-service", "git@github.com:BambeeHR/core-v1-service.git"],
+  ["billing-service", "git@github.com:BambeeHR/billing-service.git"],
+  ["auth-service", "git@github.com:BambeeHR/auth-service.git"],
+  ["task-service", "git@github.com:BambeeHR/task-service.git"],
+  ["payroll-service", "git@github.com:BambeeHR/payroll-service.git"],
+  ["pollen", "git@github.com:BambeeHR/pollen.git"],
+];

@@ -14,10 +14,19 @@
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/schedule": "^2.1.0",
+    "@newrelic/winston-enricher": "^4.0.0",
+    "@prisma/client": "^4.2.1",
+    "@sendgrid/mail": "^7.7.0",
+    "@types/supertest": "^2.0.12",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "nest-winston": "^1.7.0",
+    "newrelic": "^9.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "winston": "^3.8.1"
   },
   "devDependencies": {
     "@nestjs/schematics": "^9.0.0",
@@ -31,6 +40,7 @@
     "@nrwl/nx-cloud": "latest",
     "@nrwl/workspace": "14.5.4",
     "@types/jest": "27.4.1",
+    "@types/newrelic": "^7.0.3",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
@@ -41,6 +51,8 @@
     "lint-staged": "^13.0.3",
     "nx": "14.5.4",
     "prettier": "^2.6.2",
+    "prisma": "^4.2.1",
+    "supertest": "^6.2.4",
     "ts-jest": "27.1.4",
     "ts-node": "~10.8.0",
     "typescript": "~4.7.2"

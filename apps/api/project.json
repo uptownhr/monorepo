@@ -62,6 +62,33 @@
         ],
         "parallel": false
       }
+    },
+    "prisma:generate": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "prisma generate --schema=./apps/api/prisma/schema.prisma"
+        ],
+        "parallel": false
+      }
+    },
+    "prisma:migrate": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "prisma migrate dev --schema=./apps/api/prisma/schema.prisma"
+        ],
+        "parallel": false
+      }
+    },
+    "prisma:reset": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "prisma migrate reset --schema=./apps/api/prisma/schema.prisma"
+        ],
+        "parallel": false
+      }
     }
   },
   "tags": []

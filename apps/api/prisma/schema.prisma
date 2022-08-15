@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/generated/prisma-client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model HackerNewsFirst {
+  id   Int @id @default(autoincrement())
+  hnId Int @unique
+
+  title   String
+  url     String
+  upVotes Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  HackerNewsSelected    HackerNewsSelected?
+  HackerNewsRedirectHit HackerNewsRedirectHit[]
+}
+
+model HackerNewsSelected {
+  id                Int @id @default(autoincrement())
+  hackerNewsFirstId Int @unique
+
+  status String // skipped, selected
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hackerNewsFirst HackerNewsFirst @relation(fields: [hackerNewsFirstId], references: [id])
+}
+
+model HackerNewsRedirectHit {
+  id                Int @id @default(autoincrement())
+  hackerNewsFirstId Int
+
+  createdAt DateTime @default(now())
+
+  hackerNewsFirst HackerNewsFirst @relation(fields: [hackerNewsFirstId], references: [id])
+}
+
+model Contact {
+  id Int @id @default(autoincrement())
+
+  name  String?
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String?
+  posts   Post[]
+  profile Profile?
+}
