@@ -11,9 +11,6 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.6
     with:
       number-of-agents: 3
-      install-commands: |
-        yarn install --frozen-lockfile
-        NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn prisma:generate
       parallel-commands: |
         npx nx-cloud record -- npx nx workspace-lint
         npx nx-cloud record -- npx nx format:check
@@ -27,3 +24,6 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.6
     with:
       number-of-agents: 3
+      install-commands: |
+        yarn install --frozen-lockfile
+        NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn prisma:generate
