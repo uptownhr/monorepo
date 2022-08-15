@@ -1,5 +1,13 @@
 # Uptownhr
 
+## Getting Started
+1. clone `git clone git@github.com:uptownhr/uptownhr`
+2. install depdendencies `yarn`
+3. migrate `npx nx prisma:migrate api`
+4. generate `yarn migrate`
+5. start `yarn start`
+
+
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
