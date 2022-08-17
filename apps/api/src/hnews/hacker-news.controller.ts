@@ -1,3 +1,5 @@
+import { createSSRApp } from "vue";
+import { renderToString } from 'vue/server-renderer'
 import {
   Controller,
   Get,
@@ -11,6 +13,7 @@ import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
+import test from './../test.vue';
 
 class NewsReviewModel {
   id: number;
@@ -48,6 +51,14 @@ export class HackerNewsController {
 
   @Get('/to-review')
   async toReview(): Promise<NewsReviewModel[]> {
+    const app = createSSRApp({
+      data: () => ({ msg: 'hello' }),
+      components: {
+        test
+      },
+      template: `<div>{{ msg }} <test></test></div>`
+    })
+    console.log('vue', await renderToString(app))
     const host = this.config.get('HOST');
     const news = await this.hnewsRepo.toBeReviewed();
     this.logger.debug('news', { testing: 123 });

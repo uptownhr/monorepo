@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { WinstonModule } from 'nest-winston';
 import { getTransport } from './logging';
 import configuration from './configuration';
+
 console.log(process.env.DATABASE_URL)
 @Module({
   imports: [
