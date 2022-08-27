@@ -12,4 +12,4 @@ RUN yarn workspaces focus --production
 #HEALTHCHECK --interval=12s --timeout=12s --start-period=30s CMD node /home/node/app/dist/healthcheck.js
 EXPOSE 3000
 
-CMD node --enable-source-maps dist/main.js
+CMD node --enable-source-maps dist/apps/api/main.js
