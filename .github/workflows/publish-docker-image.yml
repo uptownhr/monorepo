@@ -9,6 +9,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+    -  name: checkout
+       uses: actions/checkout@v3
     -  name: My Docker Build
        run: docker build -t test .
     - name: Login to GitHub Container Registry
