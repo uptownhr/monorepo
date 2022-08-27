@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { WinstonModule } from 'nest-winston';
 import { getTransport } from './logging';
 import configuration from './configuration';
+import {TestModule} from "./test/test.module";
 
 console.log(process.env.DATABASE_URL)
 @Module({
@@ -40,6 +41,7 @@ console.log(process.env.DATABASE_URL)
       }),
       inject: [ConfigService],
     }),
+    TestModule
   ],
   providers: [
     HackerNewsService,

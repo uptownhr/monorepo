@@ -21,7 +21,7 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/api/src/environments/environment.ts",
+              "replace": "apps/api/src/environments/environment.ts3",
               "with": "apps/api/src/environments/environment.prod.ts"
             }
           ]
