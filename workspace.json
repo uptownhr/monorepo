@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "core": "libs/core"
+    "auth": "libs/auth",
+    "core": "libs/core",
+    "ecom": "apps/ecom"
   }
 }

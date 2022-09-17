@@ -1,6 +1,5 @@
-import { AuthLoginController } from './auth.login.controller';
-import { AuthTokenService } from './auth.token.service';
 import { ConfigModule } from '@nestjs/config';
+import { AuthTokenService } from './auth.token.service';
 
 export interface AuthModuleConfigurationOptions {
   secret: string;
@@ -8,15 +7,15 @@ export interface AuthModuleConfigurationOptions {
 
 export class AuthModule {
   static forRoot(options: AuthModuleConfigurationOptions) {
-    const configuration = () => ({
+    const configuration = (): AuthModuleConfigurationOptions => ({
       secret: options.secret,
     });
 
     return {
       module: AuthModule,
       imports: [ConfigModule.forFeature(configuration)],
-      controllers: [AuthLoginController],
       providers: [AuthTokenService],
+      exports: [AuthTokenService],
     };
   }
 }
