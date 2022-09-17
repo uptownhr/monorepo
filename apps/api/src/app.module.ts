@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HackerNewsService } from './hnews/hacker-news.service';
 import { HackerNewsFirstRepository } from './hnews/hacker-news-first.repository';
-import { PrismaService } from './prisma.service';
 import { HackerNewsCronService } from './hnews/hacker-news.cron.service';
 import { HackerNewsController } from './hnews/hacker-news.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -15,6 +14,7 @@ import configuration from './configuration';
 import { TestModule } from './test/test.module';
 import { LoginController } from './login.controller';
 import { AuthModule } from '@uptownhr/auth';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -41,13 +41,13 @@ import { AuthModule } from '@uptownhr/auth';
       }),
       inject: [ConfigService],
     }),
+    PrismaModule,
     TestModule,
   ],
   providers: [
     HackerNewsService,
     HackerNewsFirstRepository,
     ContactRepository,
-    PrismaService,
     HackerNewsCronService,
   ],
   controllers: [HackerNewsController, ContactController, LoginController],

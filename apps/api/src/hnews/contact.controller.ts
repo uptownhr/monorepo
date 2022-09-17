@@ -1,5 +1,15 @@
-import {DB} from "../prisma.service";
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from '@nestjs/common';
+import { DB } from '../prisma/prisma.service';
+
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ContactRepository } from './contact.repository';
 
 class CreateContactInput {
@@ -27,7 +37,9 @@ export class ContactController {
   }
 
   @Get('/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<DB.Contact | null> {
+  async findOne(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<DB.Contact | null> {
     return this.contactRepository.findOne(id);
   }
 

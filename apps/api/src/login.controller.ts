@@ -1,4 +1,4 @@
-import { AuthTokenService } from '../../../libs/auth/src/lib/auth.token.service';
+import { AuthTokenService } from '@uptownhr/auth';
 import { Body, Controller, Post } from '@nestjs/common';
 
 interface LoginControllerInput {

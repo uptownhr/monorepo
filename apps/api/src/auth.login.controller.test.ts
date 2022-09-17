@@ -1,6 +1,6 @@
 import { LoginController } from './login.controller';
-import { AuthTokenService } from '../../../libs/auth/src/lib/auth.token.service';
 import { ConfigService } from '@nestjs/config';
+import { AuthTokenService } from '@uptownhr/auth';
 
 describe('auth.login.controller.test', () => {
   const configService = new ConfigService({ secret: 'shhhhh' });
