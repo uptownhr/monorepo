@@ -7,7 +7,7 @@ import { HackerNewsController } from './hnews/hacker-news.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ContactRepository } from './hnews/contact.repository';
 import { ContactController } from './hnews/contact.controller';
-import { HealthModule } from './health/health.module';
+import { HealthModule } from '@uptownhr/health';
 import { WinstonModule } from 'nest-winston';
 import { getTransport } from './logging';
 import configuration from './configuration';
