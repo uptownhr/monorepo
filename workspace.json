@@ -6,6 +6,8 @@
     "auth": "libs/auth",
     "core": "libs/core",
     "health": "libs/health",
+    "logger": "libs/logger",
+    "newrelic": "libs/newrelic",
     "prisma": "libs/prisma"
   }
 }

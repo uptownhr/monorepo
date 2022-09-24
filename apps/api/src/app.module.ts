@@ -9,7 +9,7 @@ import { ContactRepository } from './hnews/contact.repository';
 import { ContactController } from './hnews/contact.controller';
 import { HealthModule } from '@uptownhr/health';
 import { WinstonModule } from 'nest-winston';
-import { getTransport } from './logging';
+import { getTransport } from '@uptownhr/logger';
 import configuration from './configuration';
 import { TestModule } from './test/test.module';
 import { LoginController } from './login.controller';

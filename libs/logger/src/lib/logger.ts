@@ -13,9 +13,9 @@ export interface GetTransportConfiguration {
 }
 
 export function getTransport({
-  logLevel,
-  logFormat,
-}: GetTransportConfiguration): winston.transport {
+                               logLevel,
+                               logFormat,
+                             }: GetTransportConfiguration): winston.transport {
   return new winston.transports.Console({
     level: logLevel || 'debug',
     handleExceptions: true,
@@ -28,9 +28,9 @@ function appModuleConsoleFormat(JSON = false): winston.Logform.Format {
   return JSON
     ? winston.format.combine(winston.format.json(), newFormatter())
     : winston.format.combine(
-        winston.format.timestamp(),
-        nestWinstonModuleUtilities.format.nestLike(),
-      );
+      winston.format.timestamp(),
+      nestWinstonModuleUtilities.format.nestLike(),
+    );
 }
 
 export enum LOG_LEVELS {
