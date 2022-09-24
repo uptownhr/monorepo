@@ -4,6 +4,7 @@
   "projects": {
     "api": "apps/api",
     "core": "libs/core",
-    "core-service": "apps/core-service"
+    "core-service": "apps/core-service",
+    "prisma": "libs/prisma"
   }
 }

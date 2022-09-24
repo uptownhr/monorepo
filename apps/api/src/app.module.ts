@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HackerNewsService } from './hnews/hacker-news.service';
 import { HackerNewsFirstRepository } from './hnews/hacker-news-first.repository';
-import { PrismaService } from './prisma.service';
 import { HackerNewsCronService } from './hnews/hacker-news.cron.service';
 import { HackerNewsController } from './hnews/hacker-news.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,6 +13,7 @@ import { WinstonModule } from 'nest-winston';
 import { getTransport } from './logging';
 import configuration from './configuration';
 import {TestModule} from "./test/test.module";
+import {PrismaModule} from "@uptownhr/prisma";
 
 console.log(process.env.DATABASE_URL)
 @Module({
@@ -41,13 +41,13 @@ console.log(process.env.DATABASE_URL)
       }),
       inject: [ConfigService],
     }),
+    PrismaModule,
     TestModule
   ],
   providers: [
     HackerNewsService,
     HackerNewsFirstRepository,
     ContactRepository,
-    PrismaService,
     HackerNewsCronService,
   ],
   controllers: [HackerNewsController, ContactController],

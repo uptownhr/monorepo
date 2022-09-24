@@ -1,6 +1,6 @@
-import {DB} from "../prisma.service";
 import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from '@nestjs/common';
 import { ContactRepository } from './contact.repository';
+import {DB} from '@uptownhr/prisma'
 
 class CreateContactInput {
   email: string;
