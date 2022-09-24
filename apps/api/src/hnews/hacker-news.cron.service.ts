@@ -5,8 +5,8 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class HackerNewsCronService {
   constructor(private readonly service: HackerNewsService) {}
-  
-  @Cron('0 * * * * *')
+
+  @Cron('0 */6 * * * *')
   async cronSyncNumberOne(): Promise<void> {
     const numOne = await this.service.getNumberOne();
     console.log({ numOne });
