@@ -6,12 +6,15 @@ export default {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
     },
+    'vue-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+    },
   },
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': 'ts-jest',
+    '^.+\\.ts$': 'ts-jest',
     '^.+\\.vue$': '@vue/vue3-jest',
   },
-  moduleFileExtensions: ['ts', 'js', 'html', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'html', 'json', 'vue'],
   coverageDirectory: '../../coverage/apps/api',
 };

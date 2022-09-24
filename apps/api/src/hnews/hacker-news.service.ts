@@ -31,14 +31,6 @@ export interface NumberOneEntity {
 }
 
 const FROM_EMAIL = 'penguin@penguin.ws';
-const NEWSLETTER_LIST = [
-  'uptownhr@gmail.com',
-  'jaequery@gmail.com',
-  'david.u.chau@gmail.com',
-  'lawrence.ham@gmail.com',
-  'ibanzajoe@gmail.com',
-  'foureight84@gmail.com',
-];
 const dailyTemplateId = 'd-0a1cc68e8aee4513aea985151667a3db';
 const weeklyTemplateId = 'd-1f21b6869d0b40b39b647fbaa49b7fcf';
 
@@ -58,7 +50,7 @@ export class HackerNewsService {
   constructor(
     private readonly hnFirstRepo: HackerNewsFirstRepository,
     private readonly contactRepo: ContactRepository,
-    private readonly config: ConfigService,
+    private readonly config: ConfigService
   ) {
     const host = config.get('HOST');
 
@@ -102,7 +94,7 @@ export class HackerNewsService {
     }
 
     const itemsWithRedirectLink = items.map((item) =>
-      addRedirectLink(item, this.host),
+      addRedirectLink(item, this.host)
     );
 
     const contactList = await this.contactRepo.findAll();
@@ -134,7 +126,7 @@ export class HackerNewsService {
     }
 
     const itemsWithRedirectLink = items.map((item) =>
-      addRedirectLink(item, this.host),
+      addRedirectLink(item, this.host)
     );
 
     const contactList = await this.contactRepo.findAll();

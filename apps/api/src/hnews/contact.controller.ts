@@ -27,7 +27,9 @@ export class ContactController {
   }
 
   @Get('/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<DB.Contact | null> {
+  async findOne(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<DB.Contact | null> {
     return this.contactRepository.findOne(id);
   }
 

@@ -17,7 +17,7 @@ function toEntity(one: DB.HackerNewsFirst): NumberOneEntity {
   };
 }
 
-type Save = Omit<NumberOneEntity, 'id' | 'createdAt' | 'domain'>
+type Save = Omit<NumberOneEntity, 'id' | 'createdAt' | 'domain'>;
 
 enum HackerNewsSelectedStatus {
   SKIPPED = 'SKIPPED',
@@ -73,9 +73,9 @@ export class HackerNewsFirstRepository {
   }
 
   async selectNews(hnFirstId: number): Promise<void> {
-    const one = await this.getById(hnFirstId);
+    await this.getById(hnFirstId);
 
-    const selected = await this.prisma.hackerNewsSelected.create({
+    await this.prisma.hackerNewsSelected.create({
       data: {
         hackerNewsFirstId: hnFirstId,
         status: HackerNewsSelectedStatus.SELECTED,
@@ -84,9 +84,9 @@ export class HackerNewsFirstRepository {
   }
 
   async skipNews(hnFirstId: number): Promise<void> {
-    const one = await this.getById(hnFirstId);
+    await this.getById(hnFirstId);
 
-    const skipped = await this.prisma.hackerNewsSelected.create({
+    await this.prisma.hackerNewsSelected.create({
       data: {
         hackerNewsFirstId: hnFirstId,
         status: HackerNewsSelectedStatus.SKIPPED,

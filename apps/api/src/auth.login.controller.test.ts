@@ -1,18 +1,18 @@
-import { AuthLoginController } from './auth.login.controller';
-import { AuthTokenService } from './auth.token.service';
+import { LoginController } from './login.controller';
 import { ConfigService } from '@nestjs/config';
+import { AuthTokenService } from '@uptownhr/auth';
 
 describe('auth.login.controller.test', () => {
   const configService = new ConfigService({ secret: 'shhhhh' });
   const tokenService = new AuthTokenService(configService);
 
   it('should create an instance', () => {
-    expect(new AuthLoginController(tokenService)).toBeTruthy();
+    expect(new LoginController(tokenService)).toBeTruthy();
   });
 
   describe('login', () => {
     it('should return a token', async () => {
-      const authLoginController = new AuthLoginController(tokenService);
+      const authLoginController = new LoginController(tokenService);
       const token = await authLoginController.login({
         username: 'test',
         password: 'asdfasdf1234',
@@ -21,7 +21,7 @@ describe('auth.login.controller.test', () => {
     });
 
     it('token verifies by tokenService', async () => {
-      const authLoginController = new AuthLoginController(tokenService);
+      const authLoginController = new LoginController(tokenService);
       const { token } = await authLoginController.login({
         username: 'test',
         password: 'asdfasdf1234',

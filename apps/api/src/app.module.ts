@@ -8,14 +8,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ContactRepository } from './hnews/contact.repository';
 import { ContactController } from './hnews/contact.controller';
 import { HealthModule } from './health/health.module';
-import { AuthModule } from './auth/auth.module';
 import { WinstonModule } from 'nest-winston';
 import { getTransport } from './logging';
 import configuration from './configuration';
+import { LoginController } from './login.controller';
+import { AuthModule } from '@uptownhr/auth';
 import {TestModule} from "./test/test.module";
 import {PrismaModule} from "@uptownhr/prisma";
 
-console.log(process.env.DATABASE_URL)
 @Module({
   imports: [
     ScheduleModule.forRoot(),
@@ -50,6 +50,6 @@ console.log(process.env.DATABASE_URL)
     ContactRepository,
     HackerNewsCronService,
   ],
-  controllers: [HackerNewsController, ContactController],
+  controllers: [HackerNewsController, ContactController, LoginController],
 })
 export class AppModule {}

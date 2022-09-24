@@ -1,17 +1,17 @@
-import { AuthTokenService } from './auth.token.service';
+import { AuthTokenService } from '@uptownhr/auth';
 import { Body, Controller, Post } from '@nestjs/common';
 
-interface AuthControllerLoginInput {
+interface LoginControllerInput {
   username: string;
   password: string;
 }
 
 @Controller('auth')
-export class AuthLoginController {
+export class LoginController {
   constructor(private readonly tokenService: AuthTokenService) {}
 
   @Post('/login')
-  login(@Body() input: AuthControllerLoginInput) {
+  login(@Body() input: LoginControllerInput) {
     if (input.password !== 'asdfasdf1234') throw new Error('bad pass');
 
     return {
