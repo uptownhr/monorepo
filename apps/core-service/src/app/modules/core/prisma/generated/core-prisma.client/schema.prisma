@@ -1,0 +1,170 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl", "linux-arm64-openssl-1.1.x", "darwin-arm64"]
+  output        = "./generated/core-prisma.client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("CORE_DATABASE_URL")
+}
+
+model CoreUserGroup {
+  id        String                    @id @default(uuid()) @db.Uuid
+  companyId String                    @db.Char(32)
+  type      CoreUserGroupType         @default(CUSTOM)
+  name      String                    @db.VarChar
+  ownerId   String?                   @db.Char(32)
+  members   CoreUserGroupMembership[]
+
+  @@index([companyId, type])
+  @@index([companyId])
+  @@map("core_user_group")
+}
+
+model CoreUserGroupMembership {
+  id      String        @id @default(uuid()) @db.Uuid
+  groupId String        @map("group_id") @db.Uuid
+  userId  String        @db.Char(32)
+  group   CoreUserGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, userId])
+  @@index([userId])
+  @@map("core_user_group_membership")
+}
+
+enum CoreUserGroupType {
+  CUSTOM
+  EMPLOYEES
+  CONTRACTORS
+  MANAGERS
+  ADMINS
+  MANAGERS_WITH_REPORTS
+}
+
+enum CoreUserFeedbackValue {
+  BELOW_EXPECTATIONS
+  MEETS_EXPECTATIONS
+  ABOVE_EXPECTATIONS
+}
+
+model CoreUserFeedback {
+  id        String   @id @default(uuid()) @db.Uuid
+  byUserId  String   @db.Char(32)
+  forUserId String   @db.Char(32)
+  createdAt DateTime @default(now())
+
+  channelId String?
+  messageId BigInt?
+  message   String?
+
+  value CoreUserFeedbackValue @default(MEETS_EXPECTATIONS)
+
+  @@index([byUserId, createdAt])
+  @@index([forUserId, createdAt])
+  @@map("core_user_feedback")
+}
+
+// AUTH / MFA definintions
+enum AuthMfaType {
+  SMS
+  BACKUP
+  PASSWORD
+  // OTP
+  // U2F
+  // BAMBEE_APP
+}
+
+model AuthMfaConfig {
+  id                      String                    @id @default(uuid()) @db.Uuid
+  authId                  String                    @map("auth_id") @db.Char(32)
+  createdAt               DateTime                  @default(now()) @map("created_at")
+  confirmedAt             DateTime?                 @map("confirmed_at")
+  deletedAt               DateTime?                 @map("deleted_at")
+  type                    AuthMfaType
+  configuration           Json
+  AuthMfaChallenge        AuthMfaChallenge[]
+  AuthMfaChallengeAttempt AuthMfaChallengeAttempt[]
+
+  @@map("auth_mfa_config")
+}
+
+model AuthDevice {
+  id               String             @id @default(uuid()) @db.Uuid
+  authId           String             @map("auth_id") @db.Char(32)
+  deviceId         String             @map("device_id") @db.VarChar
+  userAgent        String             @map("user_agent") @db.VarChar
+  AuthMfaChallenge AuthMfaChallenge[]
+
+  @@unique([authId, deviceId])
+  @@map("auth_mfa_device")
+}
+
+model AuthMfaChallenge {
+  id            String     @id @default(uuid()) @db.Uuid
+  authId        String     @map("auth_id") @db.Char(32)
+  createdAt     DateTime   @default(now()) @map("created_at")
+  succeededAt   DateTime?  @map("succeeded_at")
+  rememberUntil DateTime   @default(now()) @map("remember_until")
+  authDeviceId  String     @map("auth_device_id") @db.Uuid
+  authDevice    AuthDevice @relation(fields: [authDeviceId], references: [id])
+  reason        String?    @map("reason") @db.VarChar
+
+  AuthMfaChallengeAttempt AuthMfaChallengeAttempt[]
+  AuthMfaConfig           AuthMfaConfig?            @relation(fields: [authMfaConfigId], references: [id])
+  authMfaConfigId         String?                   @db.Uuid
+
+  @@index([authId, succeededAt, authDeviceId])
+  @@index([authId])
+  @@index([authId, reason])
+  @@index([authId, reason, succeededAt])
+  @@map("auth_mfa_challenge")
+}
+
+model AuthMfaChallengeAttempt {
+  id                 String           @id @default(uuid()) @db.Uuid
+  authId             String           @map("auth_id") @db.Char(32)
+  createdAt          DateTime         @default(now()) @map("created_at")
+  wasSuccessful      Boolean          @default(false) @map("was_successful")
+  authMfaChallengeId String           @map("auth_mfa_challenge_id") @db.Uuid
+  challenge          AuthMfaChallenge @relation(fields: [authMfaChallengeId], references: [id])
+
+  authMfaConfigId String        @map("auth_mfa_config_id") @db.Uuid
+  authMfaConfig   AuthMfaConfig @relation(fields: [authMfaConfigId], references: [id])
+
+  @@index([authId, createdAt])
+  @@map("auth_mfa_challenge_attempt")
+}
+
+model CompanyRole {
+  id          String       @id @default(uuid()) @db.Uuid
+  title       String
+  deletedAt   DateTime?    @map("deleted_at")
+  createdAt   DateTime     @default(now())
+  companyId   String       @map("company_id") @db.Char(32)
+  workerRoles WorkerRole[]
+
+  @@index([companyId])
+  @@map("company_role")
+}
+
+enum WorkerRolePaytype {
+  Hourly
+  Salary
+  Contractor
+}
+
+model WorkerRole {
+  id        String            @id @default(uuid()) @db.Uuid
+  isPrimary Boolean           @default(false) @map("is_primary")
+  payRate   Decimal           @map("pay_rate") @db.Money
+  payType   WorkerRolePaytype @map("pay_type")
+  userId    String            @db.Char(32)
+  deletedAt DateTime?         @map("deleted_at")
+  createdAt DateTime          @default(now())
+
+  CompanyRole   CompanyRole @relation(fields: [companyRoleId], references: [id])
+  companyRoleId String      @map("company_role_id") @db.Uuid
+
+  @@map("worker_role")
+}

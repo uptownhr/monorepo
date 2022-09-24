@@ -1,0 +1,18 @@
+One on One Conversations
+========================
+
+# Sendbird implementation
+
+Sendbird does not have "one on one messages", but all messaging is done through channels.
+
+**R1 (this may change as we increment)**
+To support this, we will use simple a `channel_url` constructed from the userIDs of the participants:
+```ts
+const channel_url = [userId1, userId2].sort().join('-');
+```
+
+
+# ACLs
+One on one chat is currently allowed between:
+- A manager and their direct report
+- And owner/admin and anybody at the company.

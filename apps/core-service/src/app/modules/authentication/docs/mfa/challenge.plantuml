@@ -1,0 +1,23 @@
+@startuml challenge
+entity User
+entity CoreService
+entity PayrollService
+entity Redis
+entity Check
+
+User <-> CoreService : User Logs In
+User -> PayrollService : Attempt to submit payroll
+PayrollService -> CoreService : Check if action is protected
+CoreService -> Redis : Create challenge nonce
+CoreService -> PayrollService : Action is protected, provide nonce and available verification methods
+PayrollService -> User : HTTP 412 Challenge Required
+User -> CoreService : Response to challenge (select method, provide code/password/etc)
+CoreService -> Redis : Verify response, create Success Nonce
+CoreService -> User : Respond with Success ID
+User -> PayrollService : Attempt to submit payroll including success ID
+PayrollService -> CoreService : Check if SuccessID is valid
+PayrollService -> Check : Process Payroll
+PayrollService -> User : Success
+
+
+@enduml
