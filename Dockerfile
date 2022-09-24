@@ -5,7 +5,7 @@ ENV NX_CLOUD_DISTRIBUTED_EXECUTION=false
 
 COPY . .
 RUN yarn
-RUN yarn prisma:generate
+RUN yarn prisma:generate prisma
 RUN yarn build
 RUN yarn workspaces focus --production
 
