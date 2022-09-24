@@ -1,7 +1,9 @@
-import { logger } from './logger';
+import { getTransport } from './logger';
 
 describe('logger', () => {
   it('should work', () => {
-    expect(logger()).toEqual('logger');
+    expect(getTransport({
+      logLevel: 'debug'
+    })).toBeTruthy()
   });
 });
