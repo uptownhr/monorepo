@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { HackerNewsService } from './hacker-news.service';
-import { PrismaService } from '../../../../libs/prisma/src/lib/prisma.service';
+import { PrismaService } from '@uptownhr/prisma';
 import { HackerNewsFirstRepository } from './hacker-news-first.repository';
 import { ConfigModule } from '@nestjs/config';
 import { ContactRepository } from './contact.repository';
