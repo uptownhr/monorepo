@@ -1,7 +1,9 @@
-import { newrelic } from './newrelic';
+import { NewrelicInterceptor } from './newrelic';
 
 describe('newrelic', () => {
   it('should work', () => {
-    expect(newrelic()).toEqual('newrelic');
+    const interceptor = new NewrelicInterceptor()
+
+    expect(interceptor).toBeTruthy()
   });
 });
