@@ -14,7 +14,7 @@ import configuration from './configuration';
 import { TestModule } from './test/test.module';
 import { LoginController } from './login.controller';
 import { AuthModule } from '@uptownhr/auth';
-import { PrismaModule } from './prisma/prisma.module';
+import { PrismaModule } from '@uptownhr/prisma';
 
 @Module({
   imports: [

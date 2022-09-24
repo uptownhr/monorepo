@@ -1,4 +1,4 @@
-import { DB } from '../../../../libs/prisma/src/lib/prisma.service';
+import { DB } from '@uptownhr/prisma';
 
 import {
   Body,

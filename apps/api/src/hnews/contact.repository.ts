@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService, DB } from '../../../../libs/prisma/src/lib/prisma.service';
+import { PrismaService, DB } from '@uptownhr/prisma';
 
 export interface CreateContactInput {
   email: string;
