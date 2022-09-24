@@ -1,4 +1,4 @@
-import { DB, PrismaService } from '../prisma/prisma.service';
+import { DB, PrismaService } from '../../../../libs/prisma/src/lib/prisma.service';
 import { NumberOneEntity } from './hacker-news.service';
 import { Injectable } from '@nestjs/common';
 
