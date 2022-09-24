@@ -18,6 +18,9 @@
     "paths": {
       "@uptownhr/auth": ["libs/auth/src/index.ts"],
       "@uptownhr/core": ["libs/core/src/index.ts"],
+      "@uptownhr/health": ["libs/health/src/index.ts"],
+      "@uptownhr/logger": ["libs/logger/src/index.ts"],
+      "@uptownhr/newrelic": ["libs/newrelic/src/index.ts"],
       "@uptownhr/prisma": ["libs/prisma/src/index.ts"]
     }
   },
