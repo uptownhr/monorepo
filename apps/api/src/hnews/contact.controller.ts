@@ -1,4 +1,4 @@
-import { DB } from '../prisma/prisma.service';
+import { DB } from '@uptownhr/prisma';
 
 import {
   Body,
