@@ -6,6 +6,7 @@
     "auth": "libs/auth",
     "core": "libs/core",
     "health": "libs/health",
+    "keeper-prisma": "libs/keeper-prisma",
     "logger": "libs/logger",
     "newrelic": "libs/newrelic",
     "prisma": "libs/prisma"
